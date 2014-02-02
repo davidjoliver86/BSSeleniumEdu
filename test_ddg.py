@@ -15,7 +15,7 @@ class TestDuckDuckGo(unittest.TestCase):
         driver.find_element_by_id('search_button_homepage').click()
 
         # look for a description
-        self.assertTrue('Bacon is evil' in driver.find_element_by_tag_name('body').text)
+        self.assertTrue('Bacon is a cured meat prepared from a pig' in driver.find_element_by_tag_name('body').text)
 
 if __name__ == '__main__':
     unittest.main()
