@@ -6,6 +6,7 @@ class TestDuckDuckGo(unittest.TestCase):
 
     def test_duck_duck_go(self):
         driver = webdriver.Firefox()
+        driver.implicitly_wait(30)
         driver.get('http://www.duckduckgo.com')
 
         # search for bacon
