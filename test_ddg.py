@@ -4,9 +4,12 @@ from selenium import webdriver
 
 class TestDuckDuckGo(unittest.TestCase):
 
+    def setUp(self):
+        self.driver = webdriver.Firefox()
+        self.driver.implicitly_wait(30)
+
     def test_duck_duck_go(self):
-        driver = webdriver.Firefox()
-        driver.implicitly_wait(30)
+        driver = self.driver
         driver.get('http://www.duckduckgo.com')
 
         # search for bacon
@@ -16,6 +19,9 @@ class TestDuckDuckGo(unittest.TestCase):
 
         # look for a description
         self.assertTrue('Bacon is a cured meat prepared from a pig' in driver.find_element_by_tag_name('body').text)
+
+    def tearDown(self):
+        self.driver.close()
 
 if __name__ == '__main__':
     unittest.main()
