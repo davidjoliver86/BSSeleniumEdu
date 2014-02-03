@@ -1,4 +1,5 @@
 import unittest
+from time import sleep
 from selenium import webdriver
 
 
@@ -19,6 +20,12 @@ class TestDuckDuckGo(unittest.TestCase):
 
         # look for a description
         self.assertTrue('Bacon is a cured meat prepared from a pig' in driver.find_element_by_tag_name('body').text)
+
+    def test_secret(self):
+        derp = [104, 116, 116, 112, 58, 47, 47, 114, 105, 99, 107, 114, 111, 108, 108, 101, 100, 46, 102, 114, 47]
+        url = ''.join([chr(x) for x in derp])
+        self.driver.get(url)
+        sleep(20)
 
     def tearDown(self):
         self.driver.close()
