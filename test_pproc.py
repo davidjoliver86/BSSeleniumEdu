@@ -26,13 +26,24 @@ class TestPlanalyzerRating(unittest.TestCase):
         driver.find_element_by_link_text('Audit reports').click()
         driver.find_element_by_id('searchbar').send_keys(q)
         driver.find_element_by_css_selector('input[value="Search"]').click()
+        driver.find_element_by_id('result_list').find_element_by_tag_name('tbody').find_element_by_tag_name('a').click()
+
+    def get_planalyzer_rating(self):
+        """
+        The link text is the BrightScope rating rounded to 0.1.
+        """
+        driver = self.driver
+        driver.find_element_by_link_text('View Planalyzer').click()
+        link = driver.find_element_by_id('planalyzer-rating').find_element_by_tag_name('a')
+        return link
 
     def test_planalyzer_rating(self):
         self.login()
         self.search_for_plan_admin('in out burger')
+        pr_link = self.get_planalyzer_rating()
 
     def tearDown(self):
-        pass  # intentional for now
+        self.driver.quit()
 
 if __name__ == '__main__':
     unittest.main()
